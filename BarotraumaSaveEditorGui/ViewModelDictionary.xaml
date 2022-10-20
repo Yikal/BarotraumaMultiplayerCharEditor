@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:startPage="clr-namespace:BarotraumaSaveEditorGui.Pages.Start"
+					xmlns:charSelector="clr-namespace:BarotraumaSaveEditorGui.Views.Characters"
+					>
+	<DataTemplate DataType="{x:Type startPage:StartViewModel}">
+		<startPage:StartPage/>
+	</DataTemplate>
+	<DataTemplate DataType="{x:Type charSelector:CharacterSelectorViewModel}">
+		<charSelector:CharacterSelector/>
+	</DataTemplate>
+	<DataTemplate DataType="{x:Type charSelector:CharacterEditorViewModel}">
+		<charSelector:CharacterEditor/>
+	</DataTemplate>
+</ResourceDictionary>

@@ -12,4 +12,7 @@
 ## Why do I need a Barotrauma installation?
 Most contents needed for parsing and changing saved games are "only" .xmls, but were purposefully left out of the [Barotrauma Github project](https://github.com/Regalis11/Barotrauma).
 Just to be safe, I've decided to not include any content from the game and require an installation on the same machine that this application will run on.
+Additionally, if a mod would modify the Barotrauma content, the save editor could work with these changes, too.
 
+## Contributions
+Contributions are welcome, just open a pull request if you want to contribute.

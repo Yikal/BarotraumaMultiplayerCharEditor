@@ -6,7 +6,7 @@ namespace BarotraumaContentParser.CharacterTalents
 	[XmlRoot("TalentTrees")]
 	public class Talents : IBarotraumaContent
 	{
-		private Talents()
+		public Talents()
 		{
 			TalentTrees = new List<TalentTree>();
 		}
@@ -14,7 +14,7 @@ namespace BarotraumaContentParser.CharacterTalents
 		[XmlElement("TalentTree")]
 		public IReadOnlyCollection<TalentTree> TalentTrees { get; set; }
 
-		public string RelativePath => @"\Content\Talents\TalentTrees.xml";
+		public string RelativePath => @"Content\Talents\TalentTrees.xml";
 
 		public static Talents? ParseFromXml(string? inputXml)
 		{

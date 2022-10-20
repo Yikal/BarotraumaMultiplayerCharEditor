@@ -1,14 +1,9 @@
-﻿using BarotraumaMultiplayerCharEditor.Utils;
-using BarotraumaMultiplayerCharEditor.ViewModels;
+﻿using BarotraumaSaveEditorGui.Utils;
+using BarotraumaSaveEditorGui.ViewModels;
 using MultiplayerCharacterXmlParser.XmlModels;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BarotraumaMultiplayerCharEditor
+namespace BarotraumaSaveEditorGui
 {
 	internal class MainWindowViewModel : ViewModelBase
 	{
@@ -16,9 +11,9 @@ namespace BarotraumaMultiplayerCharEditor
 
 		public Command StartCommand { get; }
 
-		public string? CharacterXmlPath 
+		public string? CharacterXmlPath
 		{
-			get => _characterXmlPath; 
+			get => _characterXmlPath;
 			set
 			{
 				if (value == _characterXmlPath) return;
@@ -32,7 +27,7 @@ namespace BarotraumaMultiplayerCharEditor
 			get => _barotraumaPath;
 			set
 			{
-				if(value == _barotraumaPath) return;
+				if (value == _barotraumaPath) return;
 				_barotraumaPath = value;
 				OnPropertyChanged(nameof(BarotraumaPath));
 			}
@@ -42,7 +37,7 @@ namespace BarotraumaMultiplayerCharEditor
 		{
 			StartCommand = new Command(Start);
 			//try default path?
-			if(Directory.Exists(DefaultBarotraumaPath))
+			if (Directory.Exists(DefaultBarotraumaPath))
 			{
 				BarotraumaPath = DefaultBarotraumaPath;
 			}

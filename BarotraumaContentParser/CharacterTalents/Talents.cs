@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace MultiplayerCharacterXmlParser.BarotraumaContent.CharacterTalents
+namespace BarotraumaContentParser.CharacterTalents
 {
 	[XmlRoot("TalentTrees")]
 	public class Talents : IBarotraumaContent

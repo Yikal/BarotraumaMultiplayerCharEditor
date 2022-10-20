@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BarotraumaMultiplayerCharEditor.Utils
+namespace BarotraumaSaveEditorGui.Utils
 {
 	internal class Command : ICommand
 	{
 		private Action<object?> ExecuteAction { get; set; }
-		private Func<object?,bool>? CanExecuteAction { get; set; }
+		private Func<object?, bool>? CanExecuteAction { get; set; }
 
-		public Command(Action<object?> executeFunction, Func<object?,bool>? canExecuteFunction = null)
+		public Command(Action<object?> executeFunction, Func<object?, bool>? canExecuteFunction = null)
 		{
 			ExecuteAction = executeFunction;
 			CanExecuteAction = canExecuteFunction;
@@ -22,10 +18,11 @@ namespace BarotraumaMultiplayerCharEditor.Utils
 
 		public bool CanExecute(object? parameter)
 		{
-			if(CanExecuteAction is null)
+			if (CanExecuteAction is null)
 			{
 				return true;
-			}else
+			}
+			else
 			{
 				return CanExecuteAction(parameter);
 			}

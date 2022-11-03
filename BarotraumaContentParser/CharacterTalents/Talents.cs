@@ -12,11 +12,13 @@ namespace BarotraumaContentParser.CharacterTalents
 		}
 
 		[XmlElement("TalentTree")]
-		public IReadOnlyCollection<TalentTree> TalentTrees { get; set; }
+		public List<TalentTree> TalentTrees { get; set; }
 
-		public string RelativePath => @"Content\Talents\TalentTrees.xml";
+		public string RelativePath => Path;
 
-		public static Talents? ParseFromXml(string? inputXml)
+		public const string Path = @"Content\Talents\TalentTrees.xml";
+
+        public static Talents? ParseFromXml(string? inputXml)
 		{
 			if (inputXml == null) return null;
 			XDocument xmlDocument = XDocument.Load(inputXml);
@@ -24,7 +26,5 @@ namespace BarotraumaContentParser.CharacterTalents
 			var serializer = new XmlSerializer(typeof(Talents));
 			return (Talents?) serializer.Deserialize(dataNode.CreateReader());
 		}
-
-
 	}
 }

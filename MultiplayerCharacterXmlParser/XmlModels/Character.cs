@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Xml;
+using System.Xml.Serialization;
 
 namespace MultiplayerCharacterXmlParser.XmlModels
 {
@@ -12,5 +13,20 @@ namespace MultiplayerCharacterXmlParser.XmlModels
 
         [XmlAttribute("experiencepoints")]
         public int ExperiencePoints { get; set; }
+
+        [XmlAttribute("additionaltalentpoints")]
+        public int Talentpoints { get; set; }
+
+        [XmlAttribute("unlockedtalents")]
+        public string UnlockedTalents { get; set; }
+
+        [XmlElement("job")]
+        public Job Job { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] OtherElements { get; set; }
+
+        [XmlAnyAttribute]
+        public XmlAttribute[] OtherAttributes { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using BarotraumaContentParser;
+using BarotraumaContentParser.CharacterTalents;
+using BarotraumaSaveEditorGui.Services.BarotraumaContentService;
 using BarotraumaSaveEditorGui.Services.PageService;
 using BarotraumaSaveEditorGui.Utils;
 using BarotraumaSaveEditorGui.Views.Characters;
@@ -11,8 +13,6 @@ namespace BarotraumaSaveEditorGui.Pages.Start
 {
 	internal class StartViewModel : ViewModelBase
 	{
-		private const string DefaultBarotraumaPath = @"C:\Program Files (x86)\Steam\steamapps\common\Barotrauma";
-
 		public Command StartCommand { get; }
 
 		private ServiceProvider ServiceProvider { get; }
@@ -35,17 +35,18 @@ namespace BarotraumaSaveEditorGui.Pages.Start
 			{
 				if (value == _barotraumaPath || !BarotraumaVerifier.IsValidBarotraumaFolder(value)) return;
 				_barotraumaPath = value;
+				Settings.Default["BarotraumaPath"] = _barotraumaPath;
+				Settings.Default.Save();
 				OnPropertyChanged(nameof(BarotraumaPath));
 			}
 		}
 
 		public StartViewModel()
 		{
-			StartCommand = new Command(Start);
-			//try default path?
-			if (Directory.Exists(DefaultBarotraumaPath))
+			StartCommand = new Command(Start);			
+			if (Directory.Exists(Settings.Default.BarotraumaPath) && BarotraumaVerifier.IsValidBarotraumaFolder(Settings.Default.BarotraumaPath))
 			{
-				BarotraumaPath = DefaultBarotraumaPath;
+				BarotraumaPath = Settings.Default.BarotraumaPath;
 			}
 			var app = (App) Application.Current;
 			ServiceProvider = app.ServiceProvider;
@@ -53,11 +54,19 @@ namespace BarotraumaSaveEditorGui.Pages.Start
 
 		public void Start(object? parameter)
 		{
-			if (!File.Exists(CharacterXmlPath)) return;
+			if (!File.Exists(CharacterXmlPath)) return;			
 			var parsedData = CharacterData.ParseFromXml(_characterXmlPath);
 			var pageService = ServiceProvider.GetService<IPageService>();
+			FillContentService();
 			pageService.Show(new CharacterSelectorViewModel(parsedData));
 		}
+
+		private void FillContentService()
+		{
+            var contentService = ServiceProvider.GetService<IBarotraumaContentService>();
+			Talents talents = Talents.ParseFromXml(Path.Combine(BarotraumaPath,Talents.Path));
+			contentService.Initialize(talents);
+        }
 
 		private string? _characterXmlPath = null;
 		private string? _barotraumaPath = null;

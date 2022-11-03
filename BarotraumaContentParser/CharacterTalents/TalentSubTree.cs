@@ -8,6 +8,6 @@ namespace BarotraumaContentParser.CharacterTalents
 		public string Id { get; set; }
 
 		[XmlElement("TalentOptions")]
-		public IReadOnlyList<TalentOptionArray> TalentTiers { get; set; }
+		public List<TalentOptionArray> TalentTiers { get; set; }
 	}
 }

@@ -6,11 +6,18 @@
       xmlns:local="clr-namespace:BarotraumaSaveEditorGui.Views.Characters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-
-    <StackPanel>
-		<TextBlock Text="EXP"/>
-		<TextBlock Text="{Binding Character.Character.ExperiencePoints}"/>
-		<TextBlock Text="Salary"/>
-		<TextBlock Text="{Binding Character.Character.Salary}"/>
-	</StackPanel>
+    <TabControl>
+        <TabItem Header="General">
+            <StackPanel>
+                <TextBlock Text="EXP"/>
+                <TextBox Text="{Binding Character.Character.ExperiencePoints}"/>
+                <TextBlock Text="Salary"/>
+                <TextBox Text="{Binding Character.Character.Salary}"/>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Talents" Content="{Binding CharacterTalents}"/>
+        <TabItem Header="Inventory">
+            
+        </TabItem>
+    </TabControl>
 </UserControl>

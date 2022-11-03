@@ -5,6 +5,6 @@ namespace BarotraumaContentParser.CharacterTalents
 	public class TalentOptionArray
 	{
 		[XmlElement("TalentOption")]
-		public IReadOnlyCollection<TalentOption> TalentOptions { get; set; }
+		public List<TalentOption> TalentOptions { get; set; }
 	}
 }

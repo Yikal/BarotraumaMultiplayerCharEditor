@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Xml;
+using System.Xml.Serialization;
 
 namespace MultiplayerCharacterXmlParser.XmlModels
 {
@@ -12,5 +13,8 @@ namespace MultiplayerCharacterXmlParser.XmlModels
 
         [XmlElement("Character")]
         public Character Character { get; set; }
+
+        [XmlAnyElement]
+        public XmlElement[] OtherElements { get; set; }
     }
 }

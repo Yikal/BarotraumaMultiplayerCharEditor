@@ -1,5 +1,6 @@
 ﻿using BarotraumaSaveEditorGui;
 using BarotraumaSaveEditorGui.Pages.Start;
+using BarotraumaSaveEditorGui.Services.BarotraumaContentService;
 using BarotraumaSaveEditorGui.Services.PageService;
 using BarotraumaSaveEditorGui.Views.Characters;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ namespace BarotraumaSaveEditorGui
 			services.AddSingleton<MainWindow>();
 			services.AddSingleton<IPageService, PageService>();
 			services.AddSingleton<StartViewModel>();
+			services.AddSingleton<IBarotraumaContentService, BarotraumaContentService>();
 		}
-	}
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace BarotraumaContentParser
 {
-	internal interface IBarotraumaContent
+	public interface IBarotraumaContent
     {
         public string RelativePath { get; }
     }

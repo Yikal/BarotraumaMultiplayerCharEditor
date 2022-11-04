@@ -39,6 +39,9 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderBrush="Black" BorderThickness="1.5" Margin="4">
+                                                <Border.InputBindings>
+                                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DataContext.ToggleCommand, ElementName=character}" CommandParameter="{Binding Id}"/>
+                                                </Border.InputBindings>
                                                 <Border.Background>
                                                     <MultiBinding Converter="{StaticResource CharacterTalentIdMultiConverter}">
                                                         <Binding Path="Id"/>

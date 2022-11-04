@@ -34,6 +34,26 @@ namespace BarotraumaSaveEditorGui.Views.Characters
             }
         }
 
+        public Command ToggleCommand { get; }
+
+        public CharacterEditorViewModel()
+        {
+            ToggleCommand = new Command(ExecuteToggleCommand);
+        }
+
+        public void ExecuteToggleCommand(object? id)
+        {
+            if (!(id is string stringId)) return;
+            if(Character.Character.UnlockedTalents.Contains(stringId))
+            {
+                Character.Character.RemoveTalent(stringId);
+            }else
+            {
+                Character.Character.AddTalent(stringId);
+            }
+            OnPropertyChanged(nameof(Character));
+        }
+
         private CharacterCampaignData _character;
         private TalentTabViewModel _characterTalents;
     }

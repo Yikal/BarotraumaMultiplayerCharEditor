@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Text.RegularExpressions;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace MultiplayerCharacterXmlParser.XmlModels
@@ -28,5 +29,22 @@ namespace MultiplayerCharacterXmlParser.XmlModels
 
         [XmlAnyAttribute]
         public XmlAttribute[] OtherAttributes { get; set; }
+
+        public void AddTalent(string talentId)
+        {
+            if(UnlockedTalents == "")
+            {
+                UnlockedTalents = talentId;
+            }else
+            {
+                UnlockedTalents += "," + talentId;
+            }
+        }
+
+        public void RemoveTalent(string talentId)
+        {
+            Regex removeRegex = new Regex(talentId + @",?");
+            removeRegex.Replace(UnlockedTalents, "");
+        }
     }
 }

@@ -5,7 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BarotraumaSaveEditorGui.Pages.Characters.TalentView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <local:CharacterTalentIdMultiConverter x:Key="CharacterTalentIdMultiConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <ItemsControl ItemsSource="{Binding CharacterTrees}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -31,7 +38,13 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Border BorderBrush="Black" BorderThickness="1.5" Margin="4" Background="Transparent">                                             
+                                            <Border BorderBrush="Black" BorderThickness="1.5" Margin="4">
+                                                <Border.Background>
+                                                    <MultiBinding Converter="{StaticResource CharacterTalentIdMultiConverter}">
+                                                        <Binding Path="Id"/>
+                                                        <Binding Path="DataContext.Character" ElementName="root"/>
+                                                    </MultiBinding>
+                                                </Border.Background>
                                                 <TextBlock Text="{Binding Id}" Margin="4"/>
                                             </Border>                                            
                                         </DataTemplate>
